@@ -1,4 +1,4 @@
-# Remote manual control of robot using Xbox controller
+# Remote manual control of robot
 
 def init():
-    print("xbox control begin")
+    print("manual control begin")

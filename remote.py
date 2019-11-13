@@ -1,25 +1,18 @@
 # Establish network connection to CAM/remote.py
-# Acts as TCP/IP server
+# Acts as TCP/IP client
 
 import socket
-from termcolor import colored
 
-# Set a function to receive data from CAM and sends the return
-def listen(operation):
-    host = '' # All network interfaces
-    port = 42069 # Unused port
+# Send data to CAM and return the response
+# Input and output are byte objects
+def send(data):
+    host = "127.0.0.1"  # TODO: Set to CAM's static IP
+    port = 42069  # Carefully chosen
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.bind((host, port))
-        s.listen(1)
-        conn, addr = s.accept()
-        with conn:
-            #print("Connected to CAM ", addr)
-            while True:
-                data = conn.recv(1024)
-                if not data: break
-                #print(colored(str(data), 'grey', 'on_white'))
-                response = operation(data)
-                conn.sendall(response)
-                return response
-    return
+        s.connect((host, port))
+        s.sendall(data)
+        return s.recv(1024) # Buffer size
+
+if __name__ == "__main__":
+    print(send(b"ST")) # Test message
