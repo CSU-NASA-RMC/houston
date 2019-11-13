@@ -4,6 +4,8 @@ import remote
 import manual
 import autorun
 
+port = 42069  # Carefully chosen
+
 # Tell CAM what to do
 def houston(option):
     # TODO: Responses may need timeout fails
@@ -11,12 +13,12 @@ def houston(option):
     # Shutdown command
     if option.capitalize() == 'K':
         print("Sending shutdown command")
-        print(remote.send(b'SD'))
+        print(remote.send(b'SD', port))
 
     # Self test
     elif option == '0':
         print("Running test")
-        st_result = remote.send(b'ST')
+        st_result = remote.send(b'ST', port)
         print(st_result)
         if st_result != b'PASS':
             want_cont = input("Proceed? (y/N): ")
@@ -26,17 +28,18 @@ def houston(option):
     # Manual mode
     elif option == '1':
         print("Starting manual mode")
-        print(remote.send(b'MM'))
+        print(remote.send(b'MM', port))
         manual.init()
 
     # Autonomous run
     elif option == '2':
         print("Setting up autonomous run")
-        print(remote.send(b'AR'))
+        print(remote.send(b'AR', port))
+        autorun.init()
 
 def ping_CAM():
     try:
-        return remote.send(b'HI')
+        return remote.send(b'HI', port)
     except:
         return "can't connect"
 

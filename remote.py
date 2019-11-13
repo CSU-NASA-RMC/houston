@@ -5,9 +5,8 @@ import socket
 
 # Send data to CAM and return the response
 # Input and output are byte objects
-def send(data):
+def send(data, port):
     host = "127.0.0.1"  # TODO: Set to CAM's static IP
-    port = 42069  # Carefully chosen
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((host, port))
