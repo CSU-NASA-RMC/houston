@@ -43,19 +43,30 @@ def ping_CAM():
     try:
         return remote.send('HI', port)
     except:
-        return "can't connect"
+        return False
 
 if __name__ == "__main__":
     # Ping to see if CAM is running
     print("Connecting to CAM")
-    while ping_CAM() != 'HI':
+    ping = ping_CAM()
+    while ping == False:
         print("Couldn't connect, retrying...")
         time.sleep(5)
+        ping = ping_CAM()
     print("Connected!")
+    if ping != 'HI':
+        if ping == 'BZ': # Process is currently running
+            ltk = input("A script is currently running; kill it? (Y/n)").capitalize()
+            if ltk == "Y" or ltk == "":
+                remote.send('KP', port)
+            else:
+                exit(0) # Bad stuff will probably happen unless we stop
+    # Get user input
     while True:
         opt = input("Run Options:\n"
                     "\tQ - Exit Houston\n"
                     "\tK - Power down CAM\n"
+                    "\tL - Retrieve logs from CAM\n"
                     "\t0 - Run self test\n"
                     "\t1 - Manual mode\n"
                     "\t2 - Run autonomous program\n"
