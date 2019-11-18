@@ -56,7 +56,7 @@ if __name__ == "__main__":
     print("Connected!")
     if ping != 'HI':
         if ping == 'BZ': # Process is currently running
-            ltk = input("A script is currently running; kill it? (Y/n)").capitalize()
+            ltk = input("Something is currently running; kill it? (Y/n)").capitalize()
             if ltk == "Y" or ltk == "":
                 remote.send('KP', port)
             else:

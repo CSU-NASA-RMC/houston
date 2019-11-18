@@ -1,7 +1,7 @@
 # Launch and tend to autonomous run
 import remote
 
-port = 42070
+port = 42071
 
 # Checks if program is still running on CAM
 def ask():
@@ -10,8 +10,9 @@ def ask():
 def init():
     print("Starting autonomous run")
     run_file = input("Enter name of remote script: ")
-    print(remote.send_until(run_file, port, 10))
+    print(remote.send(run_file, port)) # Possible race condition if you type really fast
 
 
 if __name__ == "__main__":
-    print(remote.send_until("test_runfile", port, 10))
+    print(remote.send("AR", 42069))
+    print(remote.send("test_runfile", port))
