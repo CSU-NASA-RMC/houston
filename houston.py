@@ -5,12 +5,14 @@ import remote
 import manual
 import autorun
 
-port = 42069  # Carefully chosen
+logging.basicConfig(filename='CAM.log',
+                    format='%(asctime)s : %(levelname)s : %(message)s',
+                    level=logging.DEBUG) # Log each run to file
+
+port = 42069  # Port for network
 
 # Tell CAM what to do
 def houston(option):
-    # TODO: Responses may need timeout fails
-
     # Shutdown command
     if option.capitalize() == 'K':
         print("Sending shutdown command")
@@ -19,12 +21,7 @@ def houston(option):
     # Self test
     elif option == '0':
         print("Running test")
-        st_result = remote.send('ST', port)
-        print(st_result)
-        if st_result != 'PASS':
-            want_cont = input("Proceed? (y/N): ")
-            if want_cont.capitalize() != 'Y':
-                exit(1)
+        print(remote.send('ST', port))
 
     # Manual mode
     elif option == '1':
@@ -36,24 +33,23 @@ def houston(option):
         print(remote.send('AR', port))
         autorun.init()
 
+    # Upload runfile to CAM
     elif option == '3':
-        print("Not yet implemented")
+        # TODO
+        print(remote.send('UP', port))
 
-def ping_CAM():
-    try:
-        return remote.send('HI', port)
-    except:
-        return False
-
+# Main menu for running the robot
 if __name__ == "__main__":
-    # Ping to see if CAM is running
+    # Wait until connected to CAM
     print("Connecting to CAM")
-    ping = ping_CAM()
-    while ping == False:
+    ping = remote.send('HI', port)
+    while ping == "Connection Error":
         print("Couldn't connect, retrying...")
         time.sleep(5)
-        ping = ping_CAM()
+        ping = remote.send('HI', port)
     print("Connected!")
+
+    # Check status message
     if ping != 'HI':
         if ping == 'BZ': # Process is currently running
             ltk = input("Something is currently running; kill it? (Y/n)").capitalize()
@@ -61,6 +57,7 @@ if __name__ == "__main__":
                 remote.send('KP', port)
             else:
                 exit(0) # Bad stuff will probably happen unless we stop
+
     # Get user input
     while True:
         opt = input("Run Options:\n"
