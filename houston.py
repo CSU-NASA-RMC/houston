@@ -7,7 +7,7 @@ import autorun
 
 logging.basicConfig(filename='houston.log',
                     format='%(asctime)s : %(levelname)s : %(message)s',
-                    level=logging.DEBUG) # Log each run to file
+                    level=logging.ERROR) # Log each run to file
 
 port = 42069  # Port for network
 
