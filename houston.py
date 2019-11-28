@@ -5,7 +5,7 @@ import remote
 import manual
 import autorun
 
-logging.basicConfig(filename='CAM.log',
+logging.basicConfig(filename='houston.log',
                     format='%(asctime)s : %(levelname)s : %(message)s',
                     level=logging.DEBUG) # Log each run to file
 

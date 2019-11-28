@@ -8,7 +8,7 @@ import logging
 
 # Send data to CAM and return the response
 def send_unsafe(data, port):
-    host = "127.0.0.1"  # TODO: Set to CAM's static IP
+    host = "192.168.1.102"  # TODO: Set to CAM's static IP
     logging.debug("Sending on port {}: {}".format(port, data))
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((host, port))
