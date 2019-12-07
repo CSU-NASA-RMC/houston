@@ -47,7 +47,7 @@ def map_axis(axis):
 
     return response # Sent to CAM
 
-def map_btn(btn):
+def map_btn(btn, state):
     # BTN_SOUTH     A
     # BTN_EAST      B
     # BTN_NORTH     X
@@ -62,7 +62,7 @@ def map_btn(btn):
 
     global control_map
 
-    response = "btn,{},{}".format(control_map, btn)
+    response = "btn,{},{},{}".format(control_map, btn, state)
 
     return response # Sent to CAM
 
@@ -122,16 +122,16 @@ def read_output(append):
 
                         print("Control mode: {}".format(control_map))
 
-                    response = remote.send(map_btn(event.code), port) # Send mapped input to CAM
-                    # TODO timeout for response
+                response = remote.send(map_btn(event.code, event.state), port) # Send mapped input to CAM
+                # TODO timeout for response
 
-                    if response != "OK":  # Not understood
-                        if response == "CC":
-                            print("Exiting manual control")
-                            return
-                        else:
-                            print("Error, exiting manual control")
-                            return
+                if response != "OK":  # Not understood
+                    if response == "CC":
+                        print("Exiting manual control")
+                        return
+                    else:
+                        print("Exiting manual control, error: {}".format(response))
+                        return
 
         append(axis) # Update most recent values
 
@@ -139,6 +139,8 @@ def read_output(append):
 # Begin and manage manual control mode
 def init():
     logging.info("Starting manual control")
+
+    time.sleep(2)  # Prevent race condition as CAM sets up for run
 
     # This all obeys GIL so there *shouldn't* be race conditions
     buffer = collections.deque(maxlen=1) # Buffer to hold most recent values
@@ -150,7 +152,6 @@ def init():
 
     # Get axis info regularly
     while True:
-        #print(buffer)
         time.sleep(.25)  # Don't overwhelm network (lowest possible is probably ~0.005 sec)
 
         if not it.is_alive(): # Iterator exited

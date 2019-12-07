@@ -25,7 +25,7 @@ def send(data, port):
     try:
         return send_unsafe(data, port)
     except:
-        logging.error("Network error")
+        logging.warning("Network error")
         return "Connection Error"
 
 # Testing

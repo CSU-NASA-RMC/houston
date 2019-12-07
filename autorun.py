@@ -1,5 +1,6 @@
 # Launch and tend to autonomous run
 import remote
+import time
 
 port = 42071 # Port for network
 
@@ -7,7 +8,10 @@ def init():
     # Try to load file
     print("Starting autonomous run")
     run_file = input("Enter name of remote script: ") # Get user input
-    load_status = remote.send(run_file, port) # Probably impossible race condition if you type really fast
+
+    time.sleep(2) # Prevent race condition as CAM sets up for run
+
+    load_status = remote.send(run_file, port)
     if load_status != "OK": # Load failed
         print("Error loading file: {}".format(load_status))
         return # Exit to main menu
@@ -39,9 +43,9 @@ def init():
             print(response)
             if response == "FIN":
                 print("Program finished")
-                return
 
 # Testing
 if __name__ == "__main__":
     print(remote.send("AR", 42069))
+    time.sleep(2)
     print(remote.send("test_runfile", port))
