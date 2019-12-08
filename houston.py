@@ -11,12 +11,14 @@ logging.basicConfig(filename='houston.log',
 
 port = 42069  # Port for network
 
+
 # Tell CAM what to do
 def houston(option):
     # Shutdown command
     if option.capitalize() == 'K':
         print("Sending shutdown command")
         print(remote.send('SD', port))
+        exit(0)
 
     # Self test
     elif option == '0':
@@ -33,10 +35,6 @@ def houston(option):
         print(remote.send('AR', port))
         autorun.init()
 
-    # Upload runfile to CAM
-    elif option == '3':
-        # TODO
-        print(remote.send('UP', port))
 
 # Main menu for running the robot
 if __name__ == "__main__":
@@ -63,11 +61,9 @@ if __name__ == "__main__":
         opt = input("Run Options:\n"
                     "\tQ - Exit Houston\n"
                     "\tK - Power down CAM\n"
-                    "\tL - Retrieve logs from CAM\n"
                     "\t0 - Run self test\n"
                     "\t1 - Manual mode\n"
                     "\t2 - Run autonomous program\n"
-                    "\t3 - Send autonomous program\n"
                     "Enter choice: ")
         if opt.capitalize() == 'Q':
             exit(0)

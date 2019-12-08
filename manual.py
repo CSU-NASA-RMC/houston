@@ -8,7 +8,8 @@ import remote
 
 port = 42070 # For network
 
-control_map = 'Easy' # ('Easy', 'Advanced') Control mode, determines button mapping
+control_map = 'Advanced' # ('Easy', 'Advanced') Control mode, determines button mapping
+
 
 # Scales input value and rejects within a dead spot
 def map_unit(value, range):
@@ -28,6 +29,7 @@ def map_unit(value, range):
 
     return value
 
+
 def map_axis(axis):
     # 0 'ABS_X'       Left stick horizontal   -1=left
     # 1 'ABS_Y'       Left stick vertical     -1=up
@@ -46,6 +48,7 @@ def map_axis(axis):
         response += ","+str(i[1])
 
     return response # Sent to CAM
+
 
 def map_btn(btn, state):
     # BTN_SOUTH     A
@@ -139,6 +142,7 @@ def read_output(append):
 # Begin and manage manual control mode
 def init():
     logging.info("Starting manual control")
+    print("Starting manual control")
 
     time.sleep(2)  # Prevent race condition as CAM sets up for run
 
@@ -152,7 +156,7 @@ def init():
 
     # Get axis info regularly
     while True:
-        time.sleep(.25)  # Don't overwhelm network (lowest possible is probably ~0.005 sec)
+        time.sleep(.1)  # Don't overwhelm network (lowest possible is probably ~0.005 sec)
 
         if not it.is_alive(): # Iterator exited
             break
@@ -171,8 +175,6 @@ def init():
             else:
                 print("Error, exiting manual control")
                 break
-
-
 
     print("Stopping CAM")
     remote.send("STOP", port) # Stop command
