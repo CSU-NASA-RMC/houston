@@ -48,43 +48,21 @@ The program will provide an interactive text menu. Type the desired option from 
 * Launch houston.py
 * Enter manual mode using the menu
 
-##### Advanced control
-| Xbox controller button | Rover action |
-| --------- | --------- |
-| Start | Toggle Easy/Advanced operation |
-| Select | Exit manual control |
-| A | Advance Auger |
-| B | Raise Depositor |
-| X | Lower Depositor |
-| Y | Retract Auger |
-| RT | Rotate auger forwards |
-| LT | Rotate auger backwards |
-| RB | Tilt auger down |
-| LB | Tilt auger up |
-| LS | Move auger |
-| RS | Unbound |
-| Dpad-N | Unbound |
-| Dpad-S | Unbound |
-| Dpad-E | Unbound |
-| Dpad-W | Unbound |
-
-##### Easy control
-Coming soon<sup>tm</sup>
-| Xbox controller button | Rover action |
-| --------- | --------- |
-| Start | Toggle Easy/Advanced operation |
-| Select | Exit manual control |
-| A | Unbound |
-| B | Unbound |
-| X | Unbound |
-| Y | Unbound |
-| RT | Unbound |
-| LT | Unbound |
-| RB | Unbound |
-| LB | Unbound |
-| LS | Unbound |
-| RS | Unbound |
-| Dpad-N | Unbound |
-| Dpad-S | Unbound |
-| Dpad-E | Unbound |
-| Dpad-W | Unbound |
+| Xbox controller button | Rover action (Advanced mode) | Rover action (Easy mode) Coming soon<sup>tm</sup>|
+| --------- | --------- | --------- |
+| Start | Change to Easy mode | Change to Advanced mode |
+| Select | Exit to menu | Exit to menu |
+| A | Advance Auger | Unbound |
+| B | Raise Depositor | Unbound |
+| X | Lower Depositor | Unbound |
+| Y | Retract Auger | Unbound |
+| RT | Rotate auger forwards | Unbound |
+| LT | Rotate auger backwards | Unbound |
+| RB | Tilt auger down | Unbound |
+| LB | Tilt auger up | Unbound |
+| LS | Move auger | Unbound |
+| RS | Unbound | Unbound |
+| Dpad-N | Unbound | Unbound |
+| Dpad-S | Unbound | Unbound |
+| Dpad-E | Unbound | Unbound |
+| Dpad-W | Unbound | Unbound |
