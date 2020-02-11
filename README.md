@@ -59,7 +59,7 @@ The program will provide an interactive text menu. Type the desired option from 
 | LT | Rotate auger backwards | Unbound |
 | RB | Tilt auger down | Unbound |
 | LB | Tilt auger up | Unbound |
-| LS | Move auger | Unbound |
+| LS | Move rover | Unbound |
 | RS | Unbound | Unbound |
 | Dpad-N | Unbound | Unbound |
 | Dpad-S | Unbound | Unbound |
