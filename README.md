@@ -48,8 +48,43 @@ The program will provide an interactive text menu. Type the desired option from 
 * Launch houston.py
 * Enter manual mode using the menu
 
-##### Easy control
-<img src="https://raw.githubusercontent.com/CSU-NASA-RMC/houston/master/images/Xbox%20Layout%20-%20Easy%20Mode.png" height="400px">
-
 ##### Advanced control
-<img src="https://raw.githubusercontent.com/CSU-NASA-RMC/houston/master/images/Xbox%20Layout%20-%20Advanced%20Mode.png" height="400px">
+| Xbox controller button | Rover action |
+| --------- | --------- |
+| Start | Toggle Easy/Advanced operation |
+| Select | Exit manual control |
+| A | Advance Auger |
+| B | Raise Depositor |
+| X | Lower Depositor |
+| Y | Retract Auger |
+| RT | Rotate auger forwards |
+| LT | Rotate auger backwards |
+| RB | Tilt auger down |
+| LB | Tilt auger up |
+| LS | Move auger |
+| RS | Unbound |
+| Dpad-N | Unbound |
+| Dpad-S | Unbound |
+| Dpad-E | Unbound |
+| Dpad-W | Unbound |
+
+##### Easy control
+Coming soon<sup>tm</sup>
+| Xbox controller button | Rover action |
+| --------- | --------- |
+| Start | Toggle Easy/Advanced operation |
+| Select | Exit manual control |
+| A | Unbound |
+| B | Unbound |
+| X | Unbound |
+| Y | Unbound |
+| RT | Unbound |
+| LT | Unbound |
+| RB | Unbound |
+| LB | Unbound |
+| LS | Unbound |
+| RS | Unbound |
+| Dpad-N | Unbound |
+| Dpad-S | Unbound |
+| Dpad-E | Unbound |
+| Dpad-W | Unbound |
