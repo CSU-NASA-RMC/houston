@@ -40,11 +40,10 @@ The program will provide an interactive text menu. Type the desired option from 
 
 #### Autonomous mode:
 * Launch houston.py
-* Use built in utility to upload a runfile to CAM
-* Execute the runfile using the menu
+* Execute a runfile using the menu
 
 #### Manual mode:
-* Connect an Xbox compatible controller to you computer via USB and insure it is detected by the OS (usually automatic)
+* Connect an Xbox compatible controller to you computer via USB **before** launching houston
 * Launch houston.py
 * Enter manual mode using the menu
 
